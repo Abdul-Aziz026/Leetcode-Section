@@ -1,0 +1,78 @@
+# Approach Bruthforce (space complexity O(n)).
+<!-- Describe your approach to solving the problem. -->
+we will be taking an extra array for storing main array elements after that we just place the element in their correct place. Array elements nums[i] will go to his place nums[(i+k)%n]. here for for finding next place we need to use molulas operation.for example: if k = 1, n = 4. what will be our nums[0] place value it will be nums[3]. that's why we need to use modular operation.
+
+in the solution: 
+        if (k==0 or k%n==0) return;
+this line we are use because if (k==0 or k%n==0) then array element will remain unchange. that's why we return from here. if fullfill this condition.
+
+# Complexity
+- Time complexity: O(n).
+<!-- Add your time complexity here, e.g. $$O(n)$$ -->
+
+- Space complexity: O(n).
+<!-- Add your space complexity here, e.g. $$O(n)$$ -->
+
+# Code
+```
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        if (k==0 or k%n==0) return;
+        vector <int> cpy = nums;
+        for (int i=0;i<n;++i) {
+            nums[(i+k)%n] = cpy[i];
+        }
+        return;
+    }
+};
+
+```
+
+# Approach Bruthforce (space complexity O(1)).
+
+# Solution:
+if you carefully notice that what will be our final position of each element.Yes if you notice each array element final position. then there you no need extra space complexity. what will be our final resulting array: 
+
+our first k element will be: 
+nums[0] = nums[n-k], nums[1] = nums[n-k+1],..., nums[k-1] = nums[n].
+
+and next n-k element will be nums[k] = nums[0], nums[k+1] = nums[1], ..., nums[n-k-1] = nums[n-k+k-1].
+
+so it's pure simple problem now.
+solution code will be just 3 lines:
+1. reverse first n-k element
+2. reverse last k element
+3. reverse the whole array begin to end.
+
+# Implementation Code:
+```
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k %= n;
+        if (k) {
+            reverse(nums.begin(), nums.begin()+n-k);
+            reverse(nums.begin()+n-k, nums.end());
+            reverse(nums.begin(), nums.end());
+        }
+        return;
+    }
+};
+
+
+
+
+```
+
+
+# Complexity
+- Time complexity: O(n).
+<!-- Add your time complexity here, e.g. $$O(n)$$ -->
+
+- Space complexity: O(1).
+<!-- Add your space complexity here, e.g. $$O(n)$$ -->
+
+# so give me an upvote and done your job :)
