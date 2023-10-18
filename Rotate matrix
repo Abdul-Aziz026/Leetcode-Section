@@ -1,0 +1,40 @@
+// rotate clockwise
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size() ;
+        for (int i=0;i<n;++i) {
+            int d=0,u=n-1;
+            while(d<u) {
+                swap(matrix[d][i], matrix[u][i]);
+                ++d, --u;
+            }
+        }
+        for (int i=0;i<n;++i) {
+            for (int j=0;j<i;++j) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+    }
+};
+
+
+// rotate anticlockwise
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size() ;
+        for (int i=0;i<n;++i) {
+            int d=0,u=n-1;
+            while(d<u) {
+                swap(matrix[i][d], matrix[i][u]);
+                ++d, --u;
+            }
+        }
+        for (int i=0;i<n;++i) {
+            for (int j=0;j<i;++j) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+    }
+};
